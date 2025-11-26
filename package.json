@@ -94,7 +94,16 @@
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "clean": "rimraf out",
+    "rebuild": "npm run clean && npm run compile"
   },
   "keywords": [],
   "author": "",
@@ -106,7 +115,8 @@
     "@typescript-eslint/eslint-plugin": "^8.48.0",
     "@typescript-eslint/parser": "^8.48.0",
     "@vscode/vsce": "^3.7.1",
-    "eslint": "^9.39.1",
+    "eslint": "^8.57.1",
+    "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
   }
 }
