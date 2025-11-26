@@ -1,0 +1,112 @@
+{
+  "name": "commit-messages",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "vscode": "^1.80.0",
+    "node": ">=18.0.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "commitGenerator.generate",
+        "title": "Generate Commit Message",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "commitGenerator.generate",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "title": "Commit Message Generator",
+    "properties": {
+      "commitGenerator.template": {
+        "type": "string",
+        "default": "[type]: [description]",
+        "description": "Commit message template"
+      },
+      "commitGenerator.structure": {
+        "type": "string",
+        "default": "conventional",
+        "enum": [
+          "conventional",
+          "semantic",
+          "angular",
+          "custom"
+        ],
+        "description": "Commit message structure"
+      },
+      "commitGenerator.types": {
+        "type": "array",
+        "default": [
+          {
+            "type": "feat",
+            "description": "A new feature"
+          },
+          {
+            "type": "fix",
+            "description": "A bug fix"
+          },
+          {
+            "type": "docs",
+            "description": "Documentation changes"
+          },
+          {
+            "type": "style",
+            "description": "Code style changes"
+          },
+          {
+            "type": "refactor",
+            "description": "Code refactoring"
+          },
+          {
+            "type": "test",
+            "description": "Adding tests"
+          },
+          {
+            "type": "chore",
+            "description": "Maintenance tasks"
+          },
+          {
+            "type": "perf",
+            "description": "Performance improvements"
+          }
+        ],
+        "description": "Available commit types"
+      },
+      "commitGenerator.includeBody": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include body section"
+      },
+      "commitGenerator.includeFooter": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include footer section"
+      }
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.106.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "@vscode/vsce": "^3.7.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3"
+  }
+}
